@@ -1,12 +1,14 @@
 package date_problems;
 
-import java.util.HashMap;
+import java.util.LinkedHashMap;
 import java.util.Map;
+import java.util.Map.Entry;
+import java.util.Set;
 
 public class MainApp {
 
-	public static Map<Integer, String> indexedMonths = new HashMap<>();
-	public static Map<String, Integer> monthsMap = new HashMap<>();
+	public static Map<Integer, String> indexedMonths = new LinkedHashMap<>();
+	public static Map<String, Integer> monthsMap = new LinkedHashMap<>();
 	static Integer givenDay = 0;
 	static Integer givenYear = 0;
 	static String givenMonth = "";
@@ -18,8 +20,12 @@ public class MainApp {
 		String someDate = "27-OCT-2023";
 		Integer daysToBeAdded = 6;
 		
-		String resultantDate =  dateModifier(someDate, daysToBeAdded);
-		System.out.println("After adding "+daysToBeAdded+" days to given date: "+someDate+" the date is: "+resultantDate);
+		// System.out.println("---"+calculateDaysOfNextMonth("JAN", true) );
+
+		String resultantDate = dateModifier(someDate, daysToBeAdded);
+		System.out.println("After adding " + daysToBeAdded + " days to given date: " + someDate + " the date is: "
+				+ resultantDate);
+ 
 	}
 	
 	public static String dateModifier(String date, int numberOfDaysToBeAdded) {
@@ -52,33 +58,47 @@ public class MainApp {
 		int yearIncrementor = 0;
 		int monthIncrementor = 0;
 		
+		Entry<String, Integer> numOfDaysInNextMonth = null;
 		// adding the number to date
 		
 		// best-easy case
-		Integer resDay = givenDay + numberOfDaysToBeAdded;
-		Integer temp = 0;
-
+		Integer resultDayOfMonth = givenDay + numberOfDaysToBeAdded;
+		boolean init = true;
 		// if addedReultDay exceeds a months/years limit, calculate next date & month
-		if (resDay >= 28) {
+		if (resultDayOfMonth >= 28) {
  
-			// year increments if resultant is >= 365/36
-			if (resDay % NON_LEAP_YEAR == 0 || resDay % LEAP_YEAR == 0) {
-				if (resDay % NON_LEAP_YEAR == 0) {
-					temp = resDay / NON_LEAP_YEAR;
-				}
-				if (resDay % LEAP_YEAR == 0) {
-					temp = resDay / LEAP_YEAR;
-				}
-				yearIncrementor = yearIncrementor + temp;
+			if (isGivenYearLeapYear) {
+				if (resultDayOfMonth % LEAP_YEAR >= 0)
+					yearIncrementor = resultDayOfMonth / LEAP_YEAR;
 			} else {
-				// month increments if noOfDays = 28 & date is 1st feb or above
-				// if its less that year than its monthIncrementor
-				//TODO
+				if (resultDayOfMonth % NON_LEAP_YEAR >= 0)
+					yearIncrementor = resultDayOfMonth / NON_LEAP_YEAR;
 				
+				int temp = resultDayOfMonth;  
+				while(resultDayOfMonth > 0) {
+					if(init)
+						numOfDaysInNextMonth = calculateDaysOfNextMonth(givenMonth, isGivenYearLeapYear);
+					else {
+						init = false;
+						numOfDaysInNextMonth = calculateDaysOfNextMonth(numOfDaysInNextMonth.getKey(), isGivenYearLeapYear);
+					}
+					
+					temp = resultDayOfMonth / numOfDaysInNextMonth.getValue();
+					if(temp > 0) {
+						temp += monthIncrementor;
+					}
+					
+					resultDayOfMonth -= numOfDaysInNextMonth.getValue();
+				}
 			}
+			
+			finalYear += yearIncrementor;
+			
+			finalDay = resultDayOfMonth.toString();
+			
 		} else {
 			// here date is lower than 28 so its within same month
-			finalDay = resDay.toString();
+			finalDay = resultDayOfMonth.toString();
 			finalMonth = givenMonth;
 			finalYear = givenYear.toString();
 		}
@@ -181,5 +201,29 @@ public class MainApp {
 		else 
 			return false;
 	}
+	
+	public static Entry<String, Integer> calculateDaysOfNextMonth(String givenMonth, boolean isGivenYearLeapYear) {
+		boolean flag = false;
+		Entry<String, Integer> resultEntry = null;
 
+		if (monthsMap.containsKey(givenMonth)) {
+			for (Entry<String, Integer> entry : monthsMap.entrySet()) {
+				if (flag) {
+					if (isGivenYearLeapYear) {
+						if ("FEB".equalsIgnoreCase(entry.getKey())) {
+							resultEntry = entry;
+							resultEntry.setValue(resultEntry.getValue() + 1);
+							break;
+						}
+					}
+					resultEntry = entry;
+					break;
+
+				} else if (entry.getKey().equalsIgnoreCase(givenMonth))
+					flag = true;
+			}
+		}
+		return resultEntry;
+	}
+	
 }
