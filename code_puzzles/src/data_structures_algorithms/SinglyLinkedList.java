@@ -2,7 +2,7 @@ package data_structures_algorithms;
 
 import java.util.Scanner;
 
-public class LinkedList {
+public class SinglyLinkedList {
 	
 	// Reference to the Static Inner Class represents as the Head pointer of Linked List
 	Node head;
@@ -21,7 +21,7 @@ public class LinkedList {
 	
 	// Driver Method
 	public static void main(String[] args) {
-		LinkedList linkList = new LinkedList();
+		SinglyLinkedList linkList = new SinglyLinkedList();
 		linkList = createLinkedList(linkList);
 		int inputData = 0;
 		int afterNodeData = 0;
@@ -52,7 +52,7 @@ public class LinkedList {
 	 * @param linkList
 	 * @return
 	 */
-	private static LinkedList createLinkedList(LinkedList linkList) {
+	private static SinglyLinkedList createLinkedList(SinglyLinkedList linkList) {
 		// Creating a Node
 		Node node1 = createNewNode(1);
 		linkList.head = node1;		// assigning node1 as the head node
@@ -81,7 +81,7 @@ public class LinkedList {
 	 * Prints the given list
 	 * @param list
 	 */
-	public static void printLinkedList(LinkedList list) {
+	public static void printLinkedList(SinglyLinkedList list) {
 		Node currentNode = null;
 		if(list.head != null) {
 			currentNode = list.head;
@@ -105,7 +105,7 @@ public class LinkedList {
 	 * @param data the node to be created & inserted 
 	 * @return list with the new node appended to it
 	 */
-	public static void appendNodeToList(LinkedList list, int data) {
+	public static void appendNodeToList(SinglyLinkedList list, int data) {
 		Node newNode = createNewNode(data);
 		Node lastNode = null;
 		// if given list is empty, then make the incoming node as 1st node
@@ -130,7 +130,7 @@ public class LinkedList {
 	 * @param data
 	 * @return list with the new node prefixed to it
 	 */
-	public static void prefixNodeToList(LinkedList list, int data) {
+	public static void prefixNodeToList(SinglyLinkedList list, int data) {
 		Node newNode = createNewNode(data);
 		
 		// if List is empty, the created node becomes the 1st node & the only node in the list
@@ -151,7 +151,7 @@ public class LinkedList {
 	 * @param data
 	 * @return
 	 */
-	public static void insertNodeAfter(LinkedList list, int data, int afterNodeData) {
+	public static void insertNodeAfter(SinglyLinkedList list, int data, int afterNodeData) {
 		Node newNode = createNewNode(data);	// create new node to be inserted using given data
 		Node currentNode = list.head;		// get hold of 1st node in list
 
@@ -186,7 +186,7 @@ public class LinkedList {
 	 * @param data
 	 * @return 
 	 */
-	public static void insertNodeBefore(LinkedList list, int data, int beforeNodeData) {
+	public static void insertNodeBefore(SinglyLinkedList list, int data, int beforeNodeData) {
 		Node newNode = createNewNode(data);
 		Node currentNode = list.head;
 		Node previousNode = null;
@@ -222,7 +222,7 @@ public class LinkedList {
 	 * @param nodeToCheck
 	 * @return
 	 */
-	private static boolean checkIfNodeExistInList(LinkedList list, int nodeToCheck) {
+	private static boolean checkIfNodeExistInList(SinglyLinkedList list, int nodeToCheck) {
 		Node currentNode = list.head;
 		
 		// traverse until last node in list, i.e until head pointer reaches the null value
