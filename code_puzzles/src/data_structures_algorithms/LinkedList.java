@@ -197,10 +197,16 @@ public class LinkedList {
 		if(isNodePresent) {
 			
 			while(currentNode != null) {
-				
 				if(currentNode.data == beforeNodeData) {
-					previousNode.next = newNode;
-					newNode.next = currentNode;
+					
+					// if we want to append a node before the 1st node of the list
+					if(previousNode == null) {
+						newNode.next = list.head;	// make the newNode point to the existing 1st node of the list
+						list.head = newNode;		// now make the newNode the new/latest/updated head pointer of list
+					} else { 	
+						previousNode.next = newNode;
+						newNode.next = currentNode;
+					}
 					break;
 				}
 				previousNode = currentNode;
