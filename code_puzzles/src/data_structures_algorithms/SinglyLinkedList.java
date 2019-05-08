@@ -2,6 +2,15 @@ package data_structures_algorithms;
 
 import java.util.Scanner;
 
+/**
+ * Singly Linked List(SLL) Implementation in Java
+ * Basic Linked List operations over SLL like follows: 
+ * DONE -> 1.a) appendTheNodeAtEnd 1.b) prefixTheNodeAtStart 1.c) insertNodeBefore 1.d) insertNodeAfter
+ * TODO -> 2.a) delete a given node
+ * TODO -> 3.a) modifyNodeAtEnd 3.b) modifyNodeAtStart 3.c) modifyNodeInBetween
+ * 
+ * @author Aniket Bharsakale
+ */
 public class SinglyLinkedList {
 	
 	// Reference to the Static Inner Class represents as the Head pointer of Linked List
@@ -27,22 +36,43 @@ public class SinglyLinkedList {
 		int afterNodeData = 0;
 		
 		Scanner in = new Scanner(System.in);
-/*
-		System.out.println("Please enter an Integer number to create & append a Node: ");
+		
+		// APPEND NODE
+		System.out.println("Enter an INTEGER no. to create & APPEND this node at the end of the existing List: ");
 		inputData = in.nextInt();
-
 		appendNodeToList(linkList, inputData);
 
-		System.out.println("Please enter an Integer number to create & prefix a Node: ");
+		// PREFIX A NODE TO LIST
+		System.out.println("Enter an INTEGER no. to create & PREFIX this node a Node: ");
 		inputData = in.nextInt();
-		prefixNodeToList(linkList, inputData);*/
+		prefixNodeToList(linkList, inputData);
 
+		// INSERT NODE 
 		System.out.println("Please enter an Integer number to insert it in between the linked list: ");
 		inputData = in.nextInt();
 		System.out.println("After which node do u want to insert the new node? Please enter a Integer number: ");
 		afterNodeData = in.nextInt();
-		// insertNodeAfter(linkList, inputData, afterNodeData);
+		insertNodeAfter(linkList, inputData, afterNodeData);
+		
+		// INSERT NODE BEFORE A NODE
+		System.out.println("Please enter an Integer number to insert it in between the linked list: ");
+		inputData = in.nextInt();
+		System.out.println("After which node do u want to insert the new node? Please enter a Integer number: ");
+		afterNodeData = in.nextInt();
 		insertNodeBefore(linkList, inputData, afterNodeData);
+		
+		
+		System.out.println("Please enter an integer number to DELETE from linked list: ");
+		inputData = in.nextInt();
+		printLinkedList(linkList);
+		deleteGivenNode(linkList, inputData);
+		
+		
+		System.out.println("Please enter an integer number to UPDATE from linked list: ");
+		inputData = in.nextInt();
+		System.out.println("Enter the new Data to update in list");
+		int newData = in.nextInt();
+		updateGivenNode(linkList, inputData, newData);
 		
 		in.close();
 	}
@@ -90,9 +120,10 @@ public class SinglyLinkedList {
 			
 			// traverse through the linked list i.e head reaches the null value
 			while(currentNode != null) {
-				System.out.print(currentNode.data +" ");
+				System.out.print("["+currentNode.data +"] -> ");
 				currentNode = currentNode.next; // increment to next node
 			}
+			System.out.println("NULL");
 		} else {
 			System.out.println("The Linked List is Empty!");
 		}
@@ -176,7 +207,6 @@ public class SinglyLinkedList {
 		} else {
 			System.out.println("Given Node does not exist in the Linked List!");
 		}
-		
 		printLinkedList(list);
 	}
 	
@@ -217,10 +247,10 @@ public class SinglyLinkedList {
 	}
 	
 	/**
-	 * Checks if afterNodeData exist in the given list
-	 * @param list
-	 * @param nodeToCheck
-	 * @return
+	 * Checks if a node is present in the given list or not
+	 * @param Linked list containing nodes
+	 * @param nodeToCheck is the node to be checked in the given list
+	 * @return returns true/false boolean value as result
 	 */
 	private static boolean checkIfNodeExistInList(SinglyLinkedList list, int nodeToCheck) {
 		Node currentNode = list.head;
@@ -233,6 +263,57 @@ public class SinglyLinkedList {
 		}
 		return false;
 	}
-
+	
+	/**
+	 * Deletes a given node from the given linked list
+	 * @param list
+	 * @param nodeToDelete
+	 */
+	private static void deleteGivenNode(SinglyLinkedList list, int nodeToDelete) {
+		if(checkIfNodeExistInList(list, nodeToDelete) ) {
+			Node currentNode = list.head;
+			Node previousNode = null;
+			
+			while(currentNode != null) {
+				if (currentNode.data == nodeToDelete) {
+					if (previousNode == null) {
+						list.head = currentNode.next; 
+						currentNode.next = null; // deleting a node is nothing but isolating & separating it from list
+					} else {
+						previousNode.next = currentNode.next; // attaching the next node with previous node
+						currentNode.next = null;
+					}
+					break;
+				}
+				previousNode = currentNode;
+				currentNode = currentNode.next; // increment
+			}
+		} else {
+			System.out.println("Given Node does not exist in the Linked List!");
+		}
+		printLinkedList(list);
+	}
+	
+	/**
+	 * Updates the value of a given node to desired value in given linked list
+	 * @param list
+	 * @param nodeToDelete
+	 */
+	private static void updateGivenNode(SinglyLinkedList list, int nodeToUpdate, int newData) {
+		if(checkIfNodeExistInList(list, nodeToUpdate) ) {
+			Node currentNode = list.head;
+			
+			while(currentNode != null) {
+				if (currentNode.data == nodeToUpdate) {
+					currentNode.data = newData;
+					break;
+				}
+				currentNode = currentNode.next; // increment node wise
+			}
+		} else {
+			System.out.println("Given Node does not exist in the Linked List!");
+		}
+		printLinkedList(list);
+	}
 	
 }
