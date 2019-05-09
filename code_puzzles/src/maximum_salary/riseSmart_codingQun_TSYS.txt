@@ -1,0 +1,32 @@
+Find the employee with Highest Salary in every Department
+In this problem, you have to modify an existing Java program that reads in some employee data, and does some processing on it.
+
+The input is being read in from a file called input.txt, in this format:
+
+22, Rajan Anand, Engineering, 1600000
+23, Swati Patil, Testing, 800000
+27, Vijay Chawda, Engineering, 800000
+29, Basant Mahapatra, Engineering, 600000
+32, Ajay Patel, Testing, 350000
+34, Swaraj Birla, Testing, 350000
+Each line consists of 4 fields "Employee ID," "Name," "Department," and "Salary." Here, "Employee ID" and "Salary" are integers, while "Name" and "Department" are strings that do not contain commas or newlines.
+
+Currently, the existing program reads the input and creates an array of String from the lines of input. Then it calls a method processData on with this array, and prints the returned data to the output file. Unfortunately, processData currently does not do anything useful - it just returns an empty Map<String,Integer>.
+
+You have to modify processData find the Employee IDs of the highest paid employee in each department. Specifically, processData should return a Map where each key is the name of a department, and the value is the Employee ID of the employee in that department who has the highest salary.
+
+If your program is run with the input given above, it should produce this output:
+
+Expected output
+Engineering: 22
+Testing: 23
+
+This is because Employee ID 22 (Rajan Anand) is the highest paid employee in the Engineering department, and Employee ID 23 (Swati Patil) is the highest paid employee in the Testing department.
+
+Please make sure of the following:
+
+Please download this Java Program, and change it to create your program, and submit your changed program as your answer
+All your changes must be inside the processData method. Do not make any changes to the rest of the program
+Make sure processData returns the correct value
+Copy paste the entire updated program in the space below. You must submit a full, working, program. Please compile, run, and check the output of your program before submitting it.
+Do not add a package declaration, and do not change the name of the class.
