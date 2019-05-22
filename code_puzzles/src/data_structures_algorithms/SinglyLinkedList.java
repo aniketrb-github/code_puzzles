@@ -24,7 +24,7 @@ public class SinglyLinkedList {
 		// constructor for a new node creation
 		public Node(int data) {
 			this.data = data;
-			next = null;
+			this.next = null;
 		}
 	}
 	
