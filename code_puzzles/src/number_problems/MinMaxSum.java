@@ -12,14 +12,20 @@ package number_problems;
 public class MinMaxSum {
 
 	public static void main(String[] args) {
-		int arr[] = { 1, 2, 3, 4, 5 };
+		//long arr[] = { 256741038, 623958417, 467905213, 714532089, 938071625};
+		//long arr[] = { 396285104, 573261094, 759641832, 819230764, 364801279 };
+		//long arr[] = {140638725, 436257910, 953274816, 734065819, 362748590};
+		//long arr[] = {769082435 ,210437958, 673982045, 375809214 ,380564127};
+		// long arr[] = {793810624, 895642170, 685903712, 623789054, 468592370};
+		long arr[] = {140537896, 243908675, 670291834, 923018467, 520718469};
+		//long arr[] = {1, 2, 3, 4, 5};
 		miniMaxSum(arr);
 	}
 
 	// Complete the miniMaxSum function below.
-	static void miniMaxSum(int[] arr) {
-		int tempArr[] = new int[5];
-		int mostMinVal = 0, mostMaxVal = 0, temp = 0;
+	static void miniMaxSum(long[] arr) {
+		long tempArr[] = new long[5];
+		long mostMinVal = 0, mostMaxVal = 0, temp = 0;
 		System.out.print("Given array: ");
 		for (int i = 0; i < arr.length; i++) {
 			System.out.print(arr[i] + " ");
@@ -34,10 +40,12 @@ public class MinMaxSum {
 			tempArr[i] = temp;
 		}
 		mostMaxVal = mostMinVal = tempArr[0];
+		System.out.println("Temp Array: ");
 		for (int count = 0; count < tempArr.length; count++) {
+			System.out.print(tempArr[count] + " ");
 			if (tempArr[count] <= mostMinVal) {
 				mostMinVal = tempArr[count];
-			} else {
+			} else if (tempArr[count] >= mostMaxVal) {
 				mostMaxVal = tempArr[count];
 			}
 		}
