@@ -1,5 +1,7 @@
 package warm_up;
 
+import java.util.Scanner;
+
 /**
  * Link: https://www.hackerrank.com/challenges/repeated-string/problem
  * 
@@ -18,7 +20,7 @@ public class RepeatedString {
 				else
 					break;
 		}
-
+		System.out.println("Target String: " + sb.toString());
 		char[] c = sb.toString().toCharArray();
 		long count = 0;
 		int k = 0;
@@ -29,25 +31,31 @@ public class RepeatedString {
 			k++;
 		}
 		return count;
+	}
 
-		// return sb.toString();
-	}
+	private static final String INPUT_STRING = "abaca";
     
-    private static final String str = "abaca";
-    
-    public static void main(String a[]) {
-    	System.out.println(repeatedString(str, 10L));
-    }
-    
-	public static Character[] toCharacterArray(String s) {
-		if (null == s) {
-			return null;
-		}
-		Character[] array = new Character[s.length()];
+	public static void main(String[] args) {
+
+		System.out.println("My Trial\n" + repeatedString(INPUT_STRING, 10L));
+
+		System.out.println("Actual Solution: \n");
+		Scanner in = new Scanner(System.in);
+		System.out.println("Please enter any String: ");
+		String s = in.next();
+		System.out.println("Please enter a integer number: ");
+		long n = in.nextLong();
+		long num = n / s.length();
+		long rem = n % s.length();
+		long ans = 0;
 		for (int i = 0; i < s.length(); i++) {
-			array[i] = s.charAt(i);
+			if (s.charAt(i) == 'a') {
+				ans += num;
+				if (i < rem)
+					ans++;
+			}
 		}
-		return array;
+		System.out.println(ans);
+		in.close();
 	}
-        
 }
