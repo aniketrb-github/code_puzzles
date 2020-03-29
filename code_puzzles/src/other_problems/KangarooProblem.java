@@ -1,5 +1,4 @@
-package arb_test_demo;
-
+package other_problems;
 /**
  * Kangaroo Problem: https://www.hackerrank.com/challenges/kangaroo/problem?isFullScreen=false&h_r=next-challenge&h_v=zen
  * 
