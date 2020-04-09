@@ -1,3 +1,4 @@
+package warm_up;
 /**
  * Link: https://www.hackerrank.com/challenges/minimum-distances All test cases
  * passed !

@@ -1,3 +1,5 @@
+package warm_up;
+
 /**
  * Link: https://www.hackerrank.com/challenges/utopian-tree/problem
  * All test cases passed!

@@ -1,3 +1,4 @@
+package warm_up;
 /**
  * Link: https://www.hackerrank.com/challenges/drawing-book/problem
  * 8/10 Test cases passed!

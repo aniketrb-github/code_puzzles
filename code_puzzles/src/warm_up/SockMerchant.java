@@ -1,3 +1,5 @@
+package warm_up;
+
 /**
  * Link: https://www.hackerrank.com/challenges/sock-merchant/problem
  * All Test cases passed!

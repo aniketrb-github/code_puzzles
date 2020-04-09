@@ -1,3 +1,4 @@
+package warm_up;
 /**
  * Link: https://www.hackerrank.com/challenges/counting-valleys/problem
  * All Test cases passed!

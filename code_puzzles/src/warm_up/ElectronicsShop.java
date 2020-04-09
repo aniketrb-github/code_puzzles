@@ -1,3 +1,4 @@
+package warm_up;
 /**
  * Link: https://www.hackerrank.com/challenges/electronics-shop/problem
  * All test cases passed !
