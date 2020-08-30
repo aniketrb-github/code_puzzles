@@ -1,4 +1,4 @@
-package easy_problems;
+package other_problems;
 
 /**
  * Link: hackerrank.com/challenges/strange-advertising/problem All 5 test cases
